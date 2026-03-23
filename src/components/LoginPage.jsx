@@ -5,8 +5,8 @@ export const LoginPage = () => {
                 <div className="flex justify-center text-zinc-50">
                     <h1 className="text-3xl font-bold">LOGIN</h1>
                 </div>
-                <textarea rows={1} placeholder="Username" className="outline-0 resize-none bg-zinc-900 p-2 rounded-md" />
-                <textarea rows={1} placeholder="Password" className="outline-0 resize-none bg-zinc-900 p-2 rounded-md" />
+                <input rows={1} placeholder="Username" className="outline-0 resize-none bg-zinc-900 p-2 rounded-md" />
+                <input rows={1} placeholder="Password" className="outline-0 resize-none bg-zinc-900 p-2 rounded-md" />
                 <div className="flex flex-col justify-center">
                     <button className="cursor-pointer bg-red-600 text-zinc-50 p-2 rounded-md">Login</button>
                 </div>

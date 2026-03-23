@@ -1,19 +1,16 @@
 import { LoginPage } from "./components/LoginPage";
 import { PokedexHomepage } from "./components/Pokedex";
-import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-	const [page] = useState('homepage')
-	switch (page) {
-		case `login`:
-			return (
-				<LoginPage />
-			)
-		case `homepage`:
-			return (
-				<PokedexHomepage />
-			);
-	}
+	return (
+		<BrowserRouter>
+		<Routes>
+			<Route path="/" element={<PokedexHomepage />} />
+			<Route path="/login" element={<LoginPage />} />
+		</Routes>
+		</BrowserRouter>
+	)
 }
 
 export default App;
