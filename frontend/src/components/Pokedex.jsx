@@ -1,7 +1,33 @@
 import { Search } from "lucide-react";
 import { AuthButton } from "./AuthButton";
+import { useState } from "react";
 
 export const PokedexHomepage = () => {
+
+	const [query, setQuery] = useState("")
+
+	const handleSearch = async (e) => {
+		e.preventDefault()
+
+		if (query !== "") {
+			try {
+				const response = await fetch("http://localhost:3001/api/pokemon", {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						name: query
+					})
+				})
+				const data = await response.json()
+				console.log("Server return:", data);
+			} catch(e) {
+				console.log(`Error:`, e)
+			}
+		}
+	}
+
 	return (
 		<div className="relative flex justify-center items-center min-h-screen bg-zinc-900 font-sans">
 
@@ -19,14 +45,19 @@ export const PokedexHomepage = () => {
 
 				<div className="group flex bg-zinc-800/50 border border-zinc-700/50 rounded-full items-center pl-4 pr-1 py-1 focus-within:border-zinc-500 transition-all duration-300">
 					<Search className="text-zinc-500 size-5" />
-					<input
-						type="text"
-						placeholder="Type a pokemon's name"
-						className="bg-transparent text-zinc-100 py-2 px-3 w-72 outline-0 placeholder:text-zinc-500"
-					/>
-					<AuthButton variant="minimal">
-						Search
-					</AuthButton>
+					<form onSubmit={handleSearch}>
+						<input
+							id="search"
+							type="text"
+							placeholder="Type a pokemon's name"
+							value={query}
+							onChange={(e) => setQuery(e.target.value)}
+							className="bg-transparent text-zinc-100 py-2 px-3 w-72 outline-0 placeholder:text-zinc-500"
+						/>
+						<AuthButton type="submit" variant="minimal">
+							Search
+						</AuthButton>
+					</form>
 				</div>
 			</div>
 		</div>
