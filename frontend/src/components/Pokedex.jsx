@@ -5,9 +5,11 @@ import { useState } from "react";
 export const PokedexHomepage = () => {
 
 	const [query, setQuery] = useState("")
+	const [banner, setBanner] = useState("")
 
 	const handleSearch = async (e) => {
 		e.preventDefault()
+		if (!query) return
 
 		if (query !== "") {
 			try {
@@ -21,8 +23,9 @@ export const PokedexHomepage = () => {
 					})
 				})
 				const data = await response.json()
-				console.log("Server return:", data);
-			} catch(e) {
+				console.log(data)
+				setBanner(data)
+			} catch (e) {
 				console.log(`Error:`, e)
 			}
 		}
@@ -58,7 +61,28 @@ export const PokedexHomepage = () => {
 							Search
 						</AuthButton>
 					</form>
+
 				</div>
+				{banner && (
+					<div className="flex gap-5 p-5 border-2 rounded-lg bg-zinc-800/50 outline-0">
+						<div className="w-28 h-28 bg-zinc-900 rounded-lg outline-3">
+							<img
+								src={banner?.sprites?.front_default}
+								alt="pokemon"
+								className="w-full h-full object-contain"
+							/>
+						</div>
+						<div className="flex-col">
+							<h1 className="text-zinc-100 font-bold text-2xl">
+								{banner?.name.toUpperCase()}
+							</h1>
+							<h2 className="text-zinc-100 font-bold">#{banner?.id}</h2>
+							<div className="flex">
+								<h1 className="text-zinc-100">{banner?.types[0].type.name}</h1>
+								</div>
+						</div>
+					</div>
+				)}
 			</div>
 		</div>
 	)
