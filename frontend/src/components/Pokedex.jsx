@@ -1,6 +1,7 @@
 import { Search } from "lucide-react";
 import { AuthButton } from "./AuthButton";
 import { useState } from "react";
+import { TypeLayout } from "./TypeLayout";
 
 export const PokedexHomepage = () => {
 
@@ -73,13 +74,17 @@ export const PokedexHomepage = () => {
 							/>
 						</div>
 						<div className="flex-col">
+							<div className="flex gap-2">
 							<h1 className="text-zinc-100 font-bold text-2xl">
 								{banner?.name.toUpperCase()}
 							</h1>
-							<h2 className="text-zinc-100 font-bold">#{banner?.id}</h2>
-							<div className="flex">
-								<h1 className="text-zinc-100">{banner?.types[0].type.name}</h1>
-								</div>
+							<h2 className="text-zinc-400 font-bold text-2xl">#{banner?.id}</h2>
+							</div>
+							<TypeLayout
+								type={banner?.types[0]?.type?.name}
+								typeTwo={banner?.types[1]?.type?.name}
+								banner={banner}
+							/>
 						</div>
 					</div>
 				)}
