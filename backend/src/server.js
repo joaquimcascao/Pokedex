@@ -10,19 +10,23 @@ app.use(express.json())
 app.post('/api/pokemon', async (req, res) => {
     const POKEMON_NAME = req.body.name?.toLowerCase()
 
-    if (!POKEMON_NAME) {
-        return res.status(400).json({ error: "Pokémon name is required" });
-    }
+    if (!POKEMON_NAME) return res.status(400).json({ error: "Pokémon name is required" });
 
     try {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${POKEMON_NAME}`)
+        const POKEMON_RESPONSE = await fetch(`https://pokeapi.co/api/v2/pokemon/${POKEMON_NAME}`)
+        const SPECIES_RESPONSE = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${POKEMON_NAME}`)
 
-        if(!response.ok) {
+        if(!POKEMON_RESPONSE.ok || !SPECIES_RESPONSE.ok) {
             return res.status(404).json({ error: `Pokemon not found`})
         }
 
-        const data = await response.json()
-        return res.json(data)
+        const pokemonData = await POKEMON_RESPONSE.json()
+        const speciesData = await SPECIES_RESPONSE.json()
+        
+        return res.json({
+            pokemon: pokemonData,
+            species: speciesData,
+        })
 
     } catch (e) {
         console.error("Server error:", e);

@@ -68,22 +68,22 @@ export const PokedexHomepage = () => {
 					<div className="flex gap-5 p-5 border-2 rounded-lg bg-zinc-800/50 outline-0">
 						<div className="w-28 h-28 bg-zinc-900 rounded-lg outline-3">
 							<img
-								src={banner?.sprites?.front_default}
+								src={banner?.pokemon.sprites?.front_default}
 								alt="pokemon"
 								className="w-full h-full object-contain"
 							/>
 						</div>
 						<div className="flex-col">
 							<div className="flex gap-2">
-							<h1 className="text-zinc-100 font-bold text-2xl">
-								{banner?.name.toUpperCase()}
-							</h1>
-							<h2 className="text-zinc-400 font-bold text-2xl">#{banner?.id}</h2>
+								<h1 className="text-zinc-100 font-bold text-2xl">
+									{banner?.pokemon?.name?.toUpperCase()}
+								</h1>
+								<h2 className="text-zinc-400 font-bold text-2xl">#{banner?.pokemon?.id}</h2>
 							</div>
 							<TypeLayout
-								type={banner?.types[0]?.type?.name}
-								typeTwo={banner?.types[1]?.type?.name}
-								banner={banner}
+								type={banner?.pokemon?.types[0]?.type?.name}
+								typeTwo={banner?.pokemon?.types[1]?.type?.name}
+								banner={banner?.pokemon}
 							/>
 						</div>
 					</div>
