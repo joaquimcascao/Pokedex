@@ -73,12 +73,14 @@ export const PokedexHomepage = () => {
 							</div>
 							<SectionHeader
 								title={"Type"}
+								type={banner?.pokemon.types[0].type.name}
 							/>
 								<AtributteLayout
 									attribute={banner?.pokemon.types.map(t => t.type.name)}
 								/>
 							<SectionHeader 
 								title={"Weakness:"}
+								type={banner?.typeRelations[0].damage_relations.double_damage_from[0].name}
 							/>
 								<AtributteLayout
 									attribute={banner?.typeRelations[0].damage_relations.double_damage_from.map(t => t.name)}
