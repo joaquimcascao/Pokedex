@@ -2,35 +2,19 @@ import { Search } from "lucide-react";
 import { AuthButton } from "./AuthButton";
 import { useState } from "react";
 import { TypeLayout } from "./TypeLayout";
+import { searchPokemon } from "../services/pokemonService";
 
 export const PokedexHomepage = () => {
 
 	const [query, setQuery] = useState("")
-	const [banner, setBanner] = useState("")
+    const [banner, setBanner] = useState("")
 
 	const handleSearch = async (e) => {
-		e.preventDefault()
-		if (!query) return
-
-		if (query !== "") {
-			try {
-				const response = await fetch("http://localhost:3001/api/pokemon", {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({
-						name: query
-					})
-				})
-				const data = await response.json()
-				console.log(data)
-				setBanner(data)
-			} catch (e) {
-				console.log(`Error:`, e)
-			}
-		}
+		e.preventDefault(); 
+		const data = await searchPokemon(query)
+		setBanner(data)
 	}
+
 
 	return (
 		<div className="relative flex justify-center items-center min-h-screen bg-zinc-900 font-sans">
@@ -81,8 +65,14 @@ export const PokedexHomepage = () => {
 								</h1>
 								<h2 className="text-zinc-400 font-bold text-2xl">#{banner?.pokemon?.id}</h2>
 							</div>
+							<div className="flex-col -mt-1 mb-3">
+								<h1
+									className="text-zinc-400 font-bold text-xs">
+									{banner?.species?.generation?.name.split("-").join(" ").toUpperCase()}
+								</h1>
+							</div>
 							<TypeLayout
-								type={banner?.pokemon?.types[0]?.type?.name}
+								type={banner?.pokemon?.types[0]?.type?.name} 
 								typeTwo={banner?.pokemon?.types[1]?.type?.name}
 								banner={banner?.pokemon}
 							/>
