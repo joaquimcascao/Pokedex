@@ -53,6 +53,7 @@ export const PokedexHomepage = () => {
 						<input
 							id="search"
 							type="text"
+							autoComplete="off"
 							placeholder="Type a pokemon's name"
 							value={query}
 							onChange={(e) => setQuery(e.target.value)}
