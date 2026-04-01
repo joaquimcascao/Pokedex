@@ -1,6 +1,7 @@
 # Pokédex
 
 > A full-stack Pokédex that lets you search any Pokémon and explore its types, abilities, and weaknesses through a clean and minimalist interface.
+
 ## Preview
 
 ![Demo](assets/demo.gif)
@@ -32,6 +33,8 @@
 **External API**
 - [PokéAPI](https://pokeapi.co) — free, open Pokémon data
 
+---
+
 ## Running Locally
 
 **1. Clone the repo**
@@ -40,14 +43,14 @@ git clone https://github.com/joaquimcascao/Pokedex.git
 cd Pokedex
 ```
 
-**2. Start the backend**
+**2. Start the backend** (in one terminal)
 ```bash
 cd backend
 npm install
 node src/server.js
 ```
 
-**3. Start the frontend**
+**3. Start the frontend** (in a new terminal)
 ```bash
 cd frontend
 npm install
@@ -61,6 +64,8 @@ Only needed if your backend runs on a different port:
 VITE_API_URL=http://localhost:3001
 ```
 > By default, the frontend already points to `localhost:3001`.
+
+---
 
 ## Author
 
