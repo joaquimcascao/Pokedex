@@ -1,6 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-import pokemonRoutes from './routes/pokemonRoutes.js';
 import { Router } from 'express';
 import { getPokemon } from '../controllers/pokemonController.js';
 
