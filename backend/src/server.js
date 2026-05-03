@@ -13,6 +13,9 @@ app.use(express.json());
 
 app.use('/api', pokemonRoutes);
 
+router.post('/pokemon', getPokemon);
+router.all('/keepalive', (req, res) => res.status(200).send('OK'));
+
 app.listen(PORT, () => {
     console.log(`Backend running: http://localhost:${PORT}`);
 });
